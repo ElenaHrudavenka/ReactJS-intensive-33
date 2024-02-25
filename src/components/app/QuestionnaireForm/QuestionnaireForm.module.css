@@ -1,0 +1,27 @@
+.form {
+    height: 50vh;
+    min-width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #f1f1cb;
+    border-radius: 7px;
+}
+
+label {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+input[type='submit'] {
+    min-width: 50%;
+}
+/*Fix the default browser behavior for autocomplete input*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: inset 100em 1em white;
+}
+

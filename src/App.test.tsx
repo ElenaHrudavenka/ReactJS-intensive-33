@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders Class component', () => {
+test(`renders 'имя'`, () => {
   render(<App />);
-  const linkElement = screen.getByText(/Class component/i);
+  const linkElement = screen.getByText(/имя/i);
   expect(linkElement).toBeInTheDocument();
 });
