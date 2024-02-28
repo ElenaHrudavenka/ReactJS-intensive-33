@@ -1,7 +1,8 @@
 import {ChangeEvent, Component} from 'react';
+import { Input } from '../../generic/Input';
 import s from './QuestionnaireForm.module.css'
 
-type QuestionnaireFormStateType = {
+export type QuestionnaireFormStateType = {
     firstName: string;
     lastName: string;
     age: number | null;
@@ -9,8 +10,11 @@ type QuestionnaireFormStateType = {
     skills: string;
     isDisabled: boolean;
 }
-export class QuestionnaireForm extends Component<any, QuestionnaireFormStateType> {
-    constructor(props: any) {
+type QuestionnaireFormPropsType = {
+
+}
+export class QuestionnaireForm extends Component<QuestionnaireFormPropsType, QuestionnaireFormStateType> {
+    constructor(props: QuestionnaireFormPropsType) {
         super(props);
         this.state = {
             firstName: '',
@@ -40,54 +44,44 @@ export class QuestionnaireForm extends Component<any, QuestionnaireFormStateType
         console.log(`Пользователь ${this.state.firstName} ${this.state.lastName} (${this.state.email}) \nВозраст: ${this.state.age}\nНавыки: ${this.state.skills}`)
         event.preventDefault();
     }
-    handleChange(event: ChangeEvent<HTMLInputElement>) {
-        const target = event.target;
-        this.setState<any>({[target.name]: target.value})
+    handleChange(event: ChangeEvent<HTMLInputElement>):void {
+        const {name, value} = event.target;
+        this.setState({...this.state, [name]: value});
     }
 
     render() {
         return (
             <form className={s.form} onSubmit={this.handleSubmit}>
-                <label>
-                    Имя:
-                    <input type='text'
-                           name='firstName'
-                           value={this.state.firstName}
-                           onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Фамилия:
-                    <input type='text'
-                           name='lastName'
-                           value={this.state.lastName}
-                           onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Возраст:
-                    <input type='text'
-                           name='age'
-                           value={Number(this.state.age)}
-                           onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Адрес электронной почты:
-                    <input type='text'
-                           name='email'
-                           value={this.state.email}
-                           onChange={this.handleChange}
-                    />
-                </label>
-                <label>
-                    Навыки:
-                    <input type='text'
-                           name='skills'
-                           value={this.state.skills}
-                           onChange={this.handleChange}
-                    />
-                </label>
+                <Input labelName={'Имя:'}
+                       type={'text'}
+                       name={'firstName'}
+                       value={this.state.firstName}
+                       handleChange={this.handleChange}
+                />
+                <Input labelName={'Фамилия:'}
+                       type={'text'}
+                       name={'lastName'}
+                       value={this.state.lastName}
+                       handleChange={this.handleChange}
+                />
+                <Input labelName={'Возраст:'}
+                       type={'text'}
+                       name={'age'}
+                       value={!this.state.age? '' : String(this.state.age)}
+                       handleChange={this.handleChange}
+                />
+                <Input labelName={'Адрес электронной почты:'}
+                       type={'text'}
+                       name={'email'}
+                       value={this.state.email}
+                       handleChange={this.handleChange}
+                />
+                <Input labelName={'Навыки:'}
+                       type={'text'}
+                       name={'skills'}
+                       value={this.state.skills}
+                       handleChange={this.handleChange}
+                />
                 <input type='submit' value='Отправить данные' disabled={this.state.isDisabled}/>
             </form>
         )
