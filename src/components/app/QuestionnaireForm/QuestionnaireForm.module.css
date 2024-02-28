@@ -14,9 +14,11 @@ label {
     display: flex;
     flex-direction: column;
 }
+
 input[type='submit'] {
     min-width: 50%;
 }
+
 /*Fix the default browser behavior for autocomplete input*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

@@ -1,18 +1,8 @@
 import {ChangeEvent, Component} from 'react';
-import { Input } from '../../generic/Input';
+import {Input} from '../../generic/Input';
 import s from './QuestionnaireForm.module.css'
+import {QuestionnaireFormPropsType, QuestionnaireFormStateType} from "./QuestionnaireForm.type";
 
-export type QuestionnaireFormStateType = {
-    firstName: string;
-    lastName: string;
-    age: number | null;
-    email: string;
-    skills: string;
-    isDisabled: boolean;
-}
-type QuestionnaireFormPropsType = {
-
-}
 export class QuestionnaireForm extends Component<QuestionnaireFormPropsType, QuestionnaireFormStateType> {
     constructor(props: QuestionnaireFormPropsType) {
         super(props);
@@ -44,7 +34,8 @@ export class QuestionnaireForm extends Component<QuestionnaireFormPropsType, Que
         console.log(`Пользователь ${this.state.firstName} ${this.state.lastName} (${this.state.email}) \nВозраст: ${this.state.age}\nНавыки: ${this.state.skills}`)
         event.preventDefault();
     }
-    handleChange(event: ChangeEvent<HTMLInputElement>):void {
+
+    handleChange(event: ChangeEvent<HTMLInputElement>): void {
         const {name, value} = event.target;
         this.setState({...this.state, [name]: value});
     }
@@ -67,7 +58,7 @@ export class QuestionnaireForm extends Component<QuestionnaireFormPropsType, Que
                 <Input labelName={'Возраст:'}
                        type={'text'}
                        name={'age'}
-                       value={!this.state.age? '' : String(this.state.age)}
+                       value={!this.state.age ? '' : String(this.state.age)}
                        handleChange={this.handleChange}
                 />
                 <Input labelName={'Адрес электронной почты:'}

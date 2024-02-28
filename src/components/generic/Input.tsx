@@ -1,22 +1,13 @@
-import {ChangeEvent, Component, DetailedHTMLProps, InputHTMLAttributes} from "react";
+import {Component} from "react";
+import {InputPropsType, InputStateType} from "./Input.type";
 
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-type InputPropsType = DefaultInputPropsType & {
-    labelName: string
-    value: string;
-    name: string;
-    type: string;
-    handleChange: (event: ChangeEvent<HTMLInputElement>)=>void;
-}
 
-type InputStateType = {
-
-}
 export class Input extends Component<InputPropsType, InputStateType> {
     constructor(props: InputPropsType) {
         super(props);
 
     }
+
     render() {
         return (
             <label>
